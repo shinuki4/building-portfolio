@@ -1,0 +1,6 @@
+
+GET    /                     v1.building.BuildingController.list(request:Request)
+POST   /                     v1.building.BuildingController.create(request:Request)
+
+GET    /:id                 v1.building.BuildingController.show(request:Request,id)
+PUT    /:id                 v1.building.BuildingController.update(request:Request, id)
