@@ -1,4 +1,6 @@
-package v1.building;
+package model.resource;
+
+import model.BuildingData;
 
 /**
  * Resource for the API.  This is a presentation class for frontend work.
@@ -40,6 +42,10 @@ public class BuildingResource {
 
     public String getId() {
         return id;
+    }
+
+    public String getLink() {
+        return link;
     }
 
     public String getName() {

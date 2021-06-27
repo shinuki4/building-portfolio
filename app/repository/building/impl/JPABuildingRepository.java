@@ -1,8 +1,11 @@
-package v1.building;
+package repository.building.impl;
 
+import context.BuildingExecutionContext;
+import model.BuildingData;
 import net.jodah.failsafe.CircuitBreaker;
 import net.jodah.failsafe.Failsafe;
 import play.db.jpa.JPAApi;
+import repository.building.BuildingRepository;
 
 import javax.inject.Inject;
 import javax.inject.Singleton;
@@ -63,7 +66,7 @@ public class JPABuildingRepository implements BuildingRepository {
     }
 
     private Stream<BuildingData> select(EntityManager em) {
-        TypedQuery<BuildingData> query = em.createQuery("SELECT p FROM BuildingData p", BuildingData.class);
+        TypedQuery<BuildingData> query = em.createQuery("SELECT b FROM BuildingData b", BuildingData.class);
         return query.getResultList().stream();
     }
 
@@ -71,11 +74,11 @@ public class JPABuildingRepository implements BuildingRepository {
         final BuildingData data = em.find(BuildingData.class, id);
         if (data != null) {
             data.setName(buildingData.getName());
+            data.setStreetName(buildingData.getStreetName());
             data.setCity(buildingData.getCity());
             data.setCountry(buildingData.getCountry());
-            data.setDescription(buildingData.getDescription());
             data.setPostalCode(buildingData.getPostalCode());
-            data.setStreetName(buildingData.getStreetName());
+            data.setDescription(buildingData.getDescription());
         }
         Thread.sleep(10000L);
         return Optional.ofNullable(data);

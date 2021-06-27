@@ -1,4 +1,4 @@
-package v1.building;
+package action;
 
 import com.codahale.metrics.Meter;
 import com.codahale.metrics.MetricRegistry;

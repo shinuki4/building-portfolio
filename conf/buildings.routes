@@ -1,6 +1,6 @@
 
-GET    /                     v1.building.BuildingController.list(request:Request)
-POST   /                     v1.building.BuildingController.create(request:Request)
+GET    /           controllers.building.BuildingController.list(request:Request)
+POST   /           controllers.building.BuildingController.create(request:Request)
 
-GET    /:id                 v1.building.BuildingController.show(request:Request,id)
-PUT    /:id                 v1.building.BuildingController.update(request:Request, id)
+GET    /:id        controllers.building.BuildingController.show(request:Request,id)
+PUT    /:id        controllers.building.BuildingController.update(request:Request, id)

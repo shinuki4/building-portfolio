@@ -1,8 +1,11 @@
-package v1.building;
+package model.resource;
 
 import com.palominolabs.http.url.UrlBuilder;
+import model.BuildingData;
+import model.resource.BuildingResource;
 import play.libs.concurrent.HttpExecutionContext;
 import play.mvc.Http;
+import repository.building.BuildingRepository;
 
 import javax.inject.Inject;
 import java.nio.charset.CharacterCodingException;

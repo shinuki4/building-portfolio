@@ -1,4 +1,4 @@
-package v1.building;
+package model;
 
 import javax.persistence.*;
 
@@ -8,6 +8,18 @@ import javax.persistence.*;
 @Entity
 @Table(name = "building")
 public class BuildingData {
+
+    @Id
+    @GeneratedValue(strategy= GenerationType.AUTO)
+    private Long id;
+    private String name;
+    @Column(name = "street_name")
+    private String streetName;
+    @Column(name = "postal_code")
+    private int postalCode;
+    private String city;
+    private String country;
+    private String description;
 
     public BuildingData() {
     }
@@ -21,23 +33,8 @@ public class BuildingData {
         this.description = description;
     }
 
-    @Id
-    @GeneratedValue(strategy= GenerationType.IDENTITY)
-    private Long id;
-    private String name;
-    private String streetName;
-    private int postalCode;
-    private String city;
-    private String country;
-    private String description;
-
-
     public Long getId() {
         return id;
-    }
-
-    public void setId(Long id) {
-        this.id = id;
     }
 
     public String getName() {

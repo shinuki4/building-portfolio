@@ -1,4 +1,6 @@
-package v1.building;
+package repository.building;
+
+import model.BuildingData;
 
 import java.util.Optional;
 import java.util.concurrent.CompletionStage;
