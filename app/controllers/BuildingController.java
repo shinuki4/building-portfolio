@@ -1,4 +1,4 @@
-package controllers.building;
+package controllers;
 
 import action.BuildingAction;
 import com.fasterxml.jackson.databind.JsonNode;
@@ -51,5 +51,12 @@ public class BuildingController extends Controller {
         JsonNode json = request.body().asJson();
         final BuildingResource resource = Json.fromJson(json, BuildingResource.class);
         return handler.create(request, resource).thenApplyAsync(savedResource -> created(Json.toJson(savedResource)), ec.current());
+    }
+
+    public CompletionStage<Result> index(Http.Request request) {
+        return handler.find(request).thenApplyAsync(buildings -> {
+            final List<BuildingResource> buildingList = buildings.collect(Collectors.toList());
+            return ok(views.html.index.render(buildingList));
+        }, ec.current());
     }
 }

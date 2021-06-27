@@ -1,5 +1,19 @@
-@()
+@import model.resource.BuildingResource
+@(buildingsList: List[BuildingResource])
 
-@main("Welcome to Play") {
-  <h1>Welcome to Play!</h1>
+
+@main("Building portfolio App") {
+  <h1>Building portfolio App</h1>
+  @for(b <- buildingsList){
+    <table>
+      <table>
+        <tr>
+          <td>@b.getName</td>
+          <td>@b.getStreetName</td>
+          <td>@b.getPostalCode</td>
+        </tr>
+      </table>
+    </table>
+
+  }
 }
