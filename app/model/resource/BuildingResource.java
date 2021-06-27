@@ -46,10 +46,6 @@ public class BuildingResource {
         return id;
     }
 
-    public String getLink() {
-        return link;
-    }
-
     public String getName() {
         return name;
     }

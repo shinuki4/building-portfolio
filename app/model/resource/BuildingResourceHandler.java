@@ -2,7 +2,6 @@ package model.resource;
 
 import com.palominolabs.http.url.UrlBuilder;
 import model.BuildingData;
-import model.resource.BuildingResource;
 import play.libs.concurrent.HttpExecutionContext;
 import play.mvc.Http;
 import repository.building.BuildingRepository;
