@@ -61,8 +61,7 @@ public class JPABuildingRepository implements BuildingRepository {
     }
 
     private Optional<BuildingData> lookup(EntityManager em, Long id) throws SQLException {
-        throw new SQLException("Call this to cause the circuit breaker to trip");
-        //return Optional.ofNullable(em.find(PostData.class, id));
+        return Optional.ofNullable(em.find(BuildingData.class, id));
     }
 
     private Stream<BuildingData> select(EntityManager em) {
@@ -80,7 +79,6 @@ public class JPABuildingRepository implements BuildingRepository {
             data.setPostalCode(buildingData.getPostalCode());
             data.setDescription(buildingData.getDescription());
         }
-        Thread.sleep(10000L);
         return Optional.ofNullable(data);
     }
 
