@@ -10,6 +10,7 @@ public class BuildingResource {
     private String link;
     private String name;
     private String streetName;
+    private int number;
     private int postalCode;
     private String city;
     private String country;
@@ -18,10 +19,11 @@ public class BuildingResource {
     public BuildingResource() {
     }
 
-    public BuildingResource(String id, String name, String streetName, int postalCode, String city, String country, String description) {
+    public BuildingResource(String id, String name, String streetName, int number, int postalCode, String city, String country, String description) {
         this.id = id;
         this.name = name;
         this.streetName = streetName;
+        this.number = number;
         this.postalCode = postalCode;
         this.city = city;
         this.country = country;
@@ -54,6 +56,10 @@ public class BuildingResource {
 
     public String getStreetName() {
         return streetName;
+    }
+
+    public int getNumber() {
+        return number;
     }
 
     public int getPostalCode() {

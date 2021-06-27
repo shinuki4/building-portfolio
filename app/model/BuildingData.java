@@ -15,6 +15,7 @@ public class BuildingData {
     private String name;
     @Column(name = "street_name")
     private String streetName;
+    private int number;
     @Column(name = "postal_code")
     private int postalCode;
     private String city;
@@ -24,9 +25,10 @@ public class BuildingData {
     public BuildingData() {
     }
 
-    public BuildingData(String name, String streetName, int postalCode, String city, String country, String description) {
+    public BuildingData(String name, String streetName, int number, int postalCode, String city, String country, String description) {
         this.name = name;
         this.streetName = streetName;
+        this.number = number;
         this.postalCode = postalCode;
         this.city = city;
         this.country = country;
@@ -51,6 +53,14 @@ public class BuildingData {
 
     public void setStreetName(String streetName) {
         this.streetName = streetName;
+    }
+
+    public int getNumber() {
+        return number;
+    }
+
+    public void setNumber(int number) {
+        this.number = number;
     }
 
     public int getPostalCode() {

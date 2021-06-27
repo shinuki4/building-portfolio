@@ -32,7 +32,7 @@ public class BuildingResourceHandler {
     }
 
     public CompletionStage<BuildingResource> create(Http.Request request, BuildingResource resource) {
-        final BuildingData data = new BuildingData(resource.getName(), resource.getStreetName(), resource.getPostalCode(), resource.getCity(), resource.getCountry(), resource.getDescription());
+        final BuildingData data = new BuildingData(resource.getName(), resource.getStreetName(), resource.getNumber(), resource.getPostalCode(), resource.getCity(), resource.getCountry(), resource.getDescription());
         return repository.create(data).thenApplyAsync(savedData -> new BuildingResource(savedData, link(request, savedData)), ec.current());
     }
 
@@ -41,7 +41,7 @@ public class BuildingResourceHandler {
     }
 
     public CompletionStage<Optional<BuildingResource>> update(Http.Request request, String id, BuildingResource resource) {
-        final BuildingData data = new BuildingData(resource.getName(), resource.getStreetName(),resource.getPostalCode(),resource.getCity(),resource.getCountry(), resource.getDescription());
+        final BuildingData data = new BuildingData(resource.getName(), resource.getStreetName(), resource.getNumber(),resource.getPostalCode(),resource.getCity(),resource.getCountry(), resource.getDescription());
         return repository.update(Long.parseLong(id), data).thenApplyAsync(optionalData -> optionalData.map(op -> new BuildingResource(op, link(request, op))), ec.current());
     }
 
