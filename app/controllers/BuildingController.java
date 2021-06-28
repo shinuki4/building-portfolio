@@ -9,6 +9,7 @@ import model.resource.BuildingResource;
 import model.resource.BuildingResourceHandler;
 
 import javax.inject.Inject;
+import java.util.Arrays;
 import java.util.List;
 import java.util.concurrent.CompletionStage;
 import java.util.stream.Collectors;
@@ -49,8 +50,13 @@ public class BuildingController extends Controller {
 
     public CompletionStage<Result> create(Http.Request request) {
         JsonNode json = request.body().asJson();
-        final BuildingResource resource = Json.fromJson(json, BuildingResource.class);
-        return handler.create(request, resource).thenApplyAsync(savedResource -> created(Json.toJson(savedResource)), ec.current());
+        if(json.isArray()){
+            final BuildingResource[] resource = Json.fromJson(json, BuildingResource[].class);
+            return handler.createAll(request, Arrays.stream(resource).collect(Collectors.toList())).thenApplyAsync(savedResource -> created(Json.toJson(savedResource)), ec.current());
+        }else{
+            final BuildingResource resource = Json.fromJson(json, BuildingResource.class);
+            return handler.create(request, resource).thenApplyAsync(savedResource -> created(Json.toJson(savedResource)), ec.current());
+        }
     }
 
     public CompletionStage<Result> index(Http.Request request) {

@@ -8,6 +8,7 @@ import repository.building.BuildingRepository;
 
 import javax.inject.Inject;
 import java.nio.charset.CharacterCodingException;
+import java.util.List;
 import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 import java.util.stream.Stream;
@@ -33,6 +34,14 @@ public class BuildingResourceHandler {
     public CompletionStage<BuildingResource> create(Http.Request request, BuildingResource resource) {
         final BuildingData data = new BuildingData(resource.getName(), resource.getStreetName(), resource.getNumber(), resource.getPostalCode(), resource.getCity(), resource.getCountry(), resource.getDescription());
         return repository.create(data).thenApplyAsync(savedData -> new BuildingResource(savedData, link(request, savedData)), ec.current());
+    }
+
+    public CompletionStage<Stream<BuildingResource>> createAll(Http.Request request, List<BuildingResource> resource) {
+        for(BuildingResource r: resource){
+            BuildingData buildingData = new BuildingData(r.getName(), r.getStreetName(), r.getNumber(), r.getPostalCode(), r.getCity(), r.getCountry(), r.getDescription());
+            repository.create(buildingData).thenApplyAsync(savedData -> new BuildingResource(savedData, link(request, savedData)), ec.current());
+        }
+        return repository.list().thenApplyAsync(buildingDataStream -> buildingDataStream.map(data -> new BuildingResource(data, link(request, data))), ec.current());
     }
 
     public CompletionStage<Optional<BuildingResource>> lookup(Http.Request request, String id) {
