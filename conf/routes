@@ -6,8 +6,8 @@
 GET     /          controllers.BuildingController.index(request:Request)
 
 # Api routes
-GET    /v1/buildings           controllers.BuildingController.list(request:Request)
-POST   /v1/buildings           controllers.BuildingController.create(request:Request)
+GET    /v1/buildings/?            controllers.BuildingController.list(request:Request)
+POST   /v1/buildings/?            controllers.BuildingController.create(request:Request)
 GET    /v1/buildings/:id        controllers.BuildingController.show(request:Request,id)
 PUT    /v1/buildings/:id        controllers.BuildingController.update(request:Request, id)
 
