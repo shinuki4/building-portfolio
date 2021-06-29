@@ -10,6 +10,7 @@ scalaVersion := "2.13.6"
 libraryDependencies += guice
 libraryDependencies ++= Seq(
   javaJpa,
+  javaWs,
   "com.h2database" % "h2" % "1.4.199",
   "org.hibernate" % "hibernate-core" % "5.5.3.Final",
   "org.postgresql" % "postgresql" % "42.2.5",

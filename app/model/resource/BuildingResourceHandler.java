@@ -32,13 +32,13 @@ public class BuildingResourceHandler {
     }
 
     public CompletionStage<BuildingResource> create(Http.Request request, BuildingResource resource) {
-        final BuildingData data = new BuildingData(resource.getName(), resource.getStreetName(), resource.getNumber(), resource.getPostalCode(), resource.getCity(), resource.getCountry(), resource.getDescription());
+        final BuildingData data = new BuildingData(resource.getName(), resource.getStreetName(), resource.getNumber(), resource.getPostalCode(), resource.getCity(), resource.getCountry(), resource.getDescription(), resource.getCoordinates());
         return repository.create(data).thenApplyAsync(savedData -> new BuildingResource(savedData, link(request, savedData)), ec.current());
     }
 
     public CompletionStage<Stream<BuildingResource>> createAll(Http.Request request, List<BuildingResource> resource) {
         for(BuildingResource r: resource){
-            BuildingData buildingData = new BuildingData(r.getName(), r.getStreetName(), r.getNumber(), r.getPostalCode(), r.getCity(), r.getCountry(), r.getDescription());
+            BuildingData buildingData = new BuildingData(r.getName(), r.getStreetName(), r.getNumber(), r.getPostalCode(), r.getCity(), r.getCountry(), r.getDescription(), r.getCoordinates());
             repository.create(buildingData).thenApplyAsync(savedData -> new BuildingResource(savedData, link(request, savedData)), ec.current());
         }
         return repository.list().thenApplyAsync(buildingDataStream -> buildingDataStream.map(data -> new BuildingResource(data, link(request, data))), ec.current());
@@ -49,7 +49,7 @@ public class BuildingResourceHandler {
     }
 
     public CompletionStage<Optional<BuildingResource>> update(Http.Request request, String id, BuildingResource resource) {
-        final BuildingData data = new BuildingData(resource.getName(), resource.getStreetName(), resource.getNumber(),resource.getPostalCode(),resource.getCity(),resource.getCountry(), resource.getDescription());
+        final BuildingData data = new BuildingData(resource.getName(), resource.getStreetName(), resource.getNumber(),resource.getPostalCode(),resource.getCity(),resource.getCountry(), resource.getDescription(), resource.getCoordinates());
         return repository.update(Long.parseLong(id), data).thenApplyAsync(optionalData -> optionalData.map(op -> new BuildingResource(op, link(request, op))), ec.current());
     }
 

@@ -21,11 +21,13 @@ public class BuildingData {
     private String city;
     private String country;
     private String description;
+    private String coordinates;
+
 
     public BuildingData() {
     }
 
-    public BuildingData(String name, String streetName, int number, int postalCode, String city, String country, String description) {
+    public BuildingData(String name, String streetName, int number, int postalCode, String city, String country, String description, String coordinates) {
         this.name = name;
         this.streetName = streetName;
         this.number = number;
@@ -33,6 +35,7 @@ public class BuildingData {
         this.city = city;
         this.country = country;
         this.description = description;
+        this.coordinates = coordinates;
     }
 
     public Long getId() {
@@ -93,5 +96,13 @@ public class BuildingData {
 
     public void setDescription(String description) {
         this.description = description;
+    }
+
+    public String getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates(String coordinates) {
+        this.coordinates = coordinates;
     }
 }

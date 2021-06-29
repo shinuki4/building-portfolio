@@ -60,7 +60,7 @@ public class JPABuildingRepository implements BuildingRepository {
         return jpaApi.withTransaction(function);
     }
 
-    private Optional<BuildingData> lookup(EntityManager em, Long id) throws SQLException {
+    private Optional<BuildingData> lookup(EntityManager em, Long id) {
         return Optional.ofNullable(em.find(BuildingData.class, id));
     }
 
@@ -69,7 +69,7 @@ public class JPABuildingRepository implements BuildingRepository {
         return query.getResultList().stream();
     }
 
-    private Optional<BuildingData> modify(EntityManager em, Long id, BuildingData buildingData) throws InterruptedException {
+    private Optional<BuildingData> modify(EntityManager em, Long id, BuildingData buildingData) {
         final BuildingData data = em.find(BuildingData.class, id);
         if (data != null) {
             data.setName(buildingData.getName());
@@ -78,6 +78,7 @@ public class JPABuildingRepository implements BuildingRepository {
             data.setCountry(buildingData.getCountry());
             data.setPostalCode(buildingData.getPostalCode());
             data.setDescription(buildingData.getDescription());
+            data.setCoordinates(buildingData.getCoordinates());
         }
         return Optional.ofNullable(data);
     }

@@ -1,6 +1,7 @@
 package model.resource;
 
 import model.BuildingData;
+import play.libs.ws.WSResponse;
 
 /**
  * Resource for the API.  This is a presentation class for frontend work.
@@ -15,11 +16,12 @@ public class BuildingResource {
     private String city;
     private String country;
     private String description;
+    private String coordinates;
 
     public BuildingResource() {
     }
 
-    public BuildingResource(String id, String name, String streetName, int number, int postalCode, String city, String country, String description) {
+    public BuildingResource(String id, String name, String streetName, int number, int postalCode, String city, String country, String description, String coordinates) {
         this.id = id;
         this.name = name;
         this.streetName = streetName;
@@ -28,6 +30,18 @@ public class BuildingResource {
         this.city = city;
         this.country = country;
         this.description = description;
+        this.coordinates = coordinates;
+    }
+
+    public BuildingResource(BuildingResource resource, String coordinates) {
+        this.name = resource.getName();
+        this.streetName = resource.getStreetName();
+        this.number = resource.getNumber();
+        this.postalCode = resource.getPostalCode();
+        this.city = resource.getCity();
+        this.country = resource.getCountry();
+        this.description = resource.getDescription();
+        this.coordinates = coordinates;
     }
 
     public BuildingResource(BuildingData data, String link) {
@@ -39,7 +53,7 @@ public class BuildingResource {
         this.city = data.getCity();
         this.country = data.getCountry();
         this.description = data.getDescription();
-
+        this.coordinates = data.getCoordinates();
     }
 
     public String getId() {
@@ -76,5 +90,13 @@ public class BuildingResource {
 
     public String getDescription() {
         return description;
+    }
+
+    public String getCoordinates() {
+        return coordinates;
+    }
+
+    public void setCoordinates( String coordinates) {
+        this.coordinates = coordinates;
     }
 }
