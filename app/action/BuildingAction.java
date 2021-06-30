@@ -47,7 +47,9 @@ public class BuildingAction extends play.mvc.Action.Simple {
         requestsMeter.mark();
         if (request.accepts("application/json")) {
             final Timer.Context time = responsesTimer.time();
-            return futures.timeout(doCall(request), 1L, TimeUnit.SECONDS).exceptionally(e -> (Results.status(GATEWAY_TIMEOUT, views.html.timeout.render()))).whenComplete((r, e) -> time.close());
+            return futures.timeout(doCall(request), 1L, TimeUnit.SECONDS)
+                    .exceptionally(e -> (Results.status(GATEWAY_TIMEOUT, views.html.timeout.render())))
+                    .whenComplete((r, e) -> time.close());
         } else {
             return completedFuture(
                     status(NOT_ACCEPTABLE, "We only accept application/json")
