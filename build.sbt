@@ -7,8 +7,8 @@ lazy val root = (project in file(".")).enablePlugins(PlayJava)
 
 scalaVersion := "2.13.6"
 
-libraryDependencies += guice
 libraryDependencies ++= Seq(
+  guice,
   javaJpa,
   javaWs,
   "com.h2database" % "h2" % "1.4.199",
@@ -19,10 +19,13 @@ libraryDependencies ++= Seq(
   "com.palominolabs.http" % "url-builder" % "1.1.0",
 )
 
+testOptions in Test := Seq(Tests.Argument(TestFrameworks.JUnit, "-a", "-v"))
 javacOptions ++= Seq(
   "-Xlint:unchecked",
   "-Xlint:deprecation",
   "-Werror"
 )
+PlayKeys.externalizeResources := false
+
 // To use when we deploy the application
 // PlayKeys.externalizeResourcesExcludes += baseDirectory.value / "conf" / "META-INF" / "persistence.xml"

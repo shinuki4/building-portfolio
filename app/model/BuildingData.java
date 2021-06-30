@@ -27,6 +27,16 @@ public class BuildingData {
     public BuildingData() {
     }
 
+    public BuildingData(String name, String streetName, int number, int postalCode, String city, String country, String description) {
+        this.name = name;
+        this.streetName = streetName;
+        this.number = number;
+        this.postalCode = postalCode;
+        this.city = city;
+        this.country = country;
+        this.description = description;
+    }
+
     public BuildingData(String name, String streetName, int number, int postalCode, String city, String country, String description, String coordinates) {
         this.name = name;
         this.streetName = streetName;
