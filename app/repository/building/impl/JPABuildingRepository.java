@@ -74,6 +74,7 @@ public class JPABuildingRepository implements BuildingRepository {
         if (data != null) {
             data.setName(buildingData.getName());
             data.setStreetName(buildingData.getStreetName());
+            data.setNumber(buildingData.getNumber());
             data.setCity(buildingData.getCity());
             data.setCountry(buildingData.getCountry());
             data.setPostalCode(buildingData.getPostalCode());

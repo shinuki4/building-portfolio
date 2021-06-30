@@ -49,6 +49,7 @@ public class BuildingResource {
         this.link = link;
         this.name = data.getName();
         this.streetName = data.getStreetName();
+        this.number = data.getNumber();
         this.postalCode = data.getPostalCode();
         this.city = data.getCity();
         this.country = data.getCountry();
