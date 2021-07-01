@@ -33,7 +33,8 @@ If you want to get the package to deploy your app on a webapp server
 
 - There's probably some possibility to improve the API call by making them in resolve in parallel to win some time during the insertion in database
 - To test what if the Geoapify API doesn't respond
-- Adding an api key to secure the api and restrict the usage of it
+- Adding an api key to secure the api and restrict the use (query limitation, restriction access)
+- documenting the API by using a tool like swagger to have a full description ( example from old school project https://app.swaggerhub.com/apis-docs/shin/Farmvillage/1.1.0)
 
 ## Issues
 
@@ -42,6 +43,8 @@ The use of Play framework as well was challenging.
 However, I've used Spring MVC and had some memories about how that kind of app are built even if it's not completely alike that experience helped me a lot.
 - Configuring correctly the app was also something which take some time
 - Understanding what was the completion stage and how they are resolve was a bit challenging.
-- the biggest issue was probably to learn all those concept and new framework
+- the biggest issue was probably to learn all those concept and new framework in small amount of time + managing my current work
+
+you can see the git commit list on the following page https://github.com/shinuki4/building-portfolio/commits/master
 
 I m really glad to have done this app and achieved it !
