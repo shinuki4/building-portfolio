@@ -1,7 +1,6 @@
 package model.resource;
 
 import model.BuildingData;
-import play.libs.ws.WSResponse;
 
 /**
  * Resource for the API.  This is a presentation class for frontend work.
@@ -21,9 +20,10 @@ public class BuildingResource {
     public BuildingResource() {
     }
 
-    public BuildingResource(String id, String name, String streetName, int number, int postalCode, String city, String country, String description, String coordinates) {
+    public BuildingResource(String id, String link, String name, String streetName, int number, int postalCode, String city, String country, String description, String coordinates) {
         this.id = id;
         this.name = name;
+        this.link = link;
         this.streetName = streetName;
         this.number = number;
         this.postalCode = postalCode;
