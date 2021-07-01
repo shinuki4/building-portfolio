@@ -11,7 +11,6 @@ import javax.inject.Inject;
 import javax.inject.Singleton;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
-import java.sql.SQLException;
 import java.util.Optional;
 import java.util.concurrent.CompletionStage;
 import java.util.function.Function;

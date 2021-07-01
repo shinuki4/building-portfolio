@@ -45,6 +45,7 @@ public class BuildingAction extends play.mvc.Action.Simple {
         }
 
         requestsMeter.mark();
+        // only accepting json reject all other type of request on the API
         if (request.accepts("application/json")) {
             final Timer.Context time = responsesTimer.time();
             return futures.timeout(doCall(request), 1L, TimeUnit.SECONDS)
@@ -62,6 +63,7 @@ public class BuildingAction extends play.mvc.Action.Simple {
             if (e != null) {
                 if (e instanceof CompletionException) {
                     Throwable completionException = e.getCause();
+                    // To make sure that an error doesn't loop avoid app to retry the same action until it's safe
                     if (completionException instanceof FailsafeException) {
                         logger.error("Circuit breaker is open!", completionException);
                         return Results.status(SERVICE_UNAVAILABLE, "Service has timed out");

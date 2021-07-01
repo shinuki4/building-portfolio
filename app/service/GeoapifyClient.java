@@ -1,7 +1,6 @@
 package service;
 
 import model.resource.BuildingResource;
-import model.resource.BuildingResourceHandler;
 import play.libs.concurrent.HttpExecutionContext;
 import play.libs.ws.WSClient;
 
@@ -18,6 +17,11 @@ public class GeoapifyClient {
         this.ws = ws;
     }
 
+    /**
+     *
+     * @param resource which be use to query the API
+     * @return A Completion stage and the result of it will be a BuildingResource who contains the coordinates
+     */
     public CompletionStage<BuildingResource> searchBuildingCoordinateIntoGeopapify(BuildingResource resource){
         return ws.url("https://api.geoapify.com/v1/geocode/search")
                 .addQueryParameter("name", resource.getName())

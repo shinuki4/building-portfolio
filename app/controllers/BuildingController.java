@@ -49,6 +49,15 @@ public class BuildingController extends Controller {
     public CompletionStage<Result> update(Http.Request request, String id) {
         JsonNode json = request.body().asJson();
         BuildingResource resource = Json.fromJson(json, BuildingResource.class);
+
+        // Getting the coordinate for the update resource base on the new modifications
+        CompletableFuture<BuildingResource> buildingResourceCompletableFuture = clientWS.searchBuildingCoordinateIntoGeopapify(resource)
+                .toCompletableFuture();
+        try {
+            resource = buildingResourceCompletableFuture.get();
+        } catch (InterruptedException | ExecutionException e) {
+            buildingResourceCompletableFuture.cancel(true);
+        }
         return handler.update(request, id, resource)
                 .thenApplyAsync(optionalResource -> optionalResource.map(r -> ok(Json.toJson(r))
                 ).orElseGet(Results::notFound), ec.current());
@@ -64,13 +73,16 @@ public class BuildingController extends Controller {
         } else {
             resource = new BuildingResource[]{Json.fromJson(json, BuildingResource.class)};
         }
+        // Getting the Coordinates for each building resources
         Arrays.stream(resource).iterator().forEachRemaining(r ->
                 {
+                    // calling Geoapify services
                     CompletableFuture<BuildingResource> buildingResourceCompletableFuture = clientWS.searchBuildingCoordinateIntoGeopapify(r)
                             .toCompletableFuture();
                     try {
                         buildingResources.add(buildingResourceCompletableFuture.get());
                     } catch (InterruptedException | ExecutionException e) {
+                        // cancelling the task if the task failed
                         buildingResourceCompletableFuture.cancel(true);
                     }
 

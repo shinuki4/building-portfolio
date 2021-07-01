@@ -53,6 +53,12 @@ public class BuildingResourceHandler {
         return repository.update(Long.parseLong(id), data).thenApplyAsync(optionalData -> optionalData.map(op -> new BuildingResource(op, link(request, op))), ec.current());
     }
 
+    /**
+     *
+     * @param request the rquest made to get the base url of the API
+     * @param data represent the value in the databes
+     * @return a link to access to the resource in the API example "http://localhost:9000/v1/buildings/1"
+     */
     private String link(Http.Request request, BuildingData data) {
         final String[] hostPort = request.host().split(":");
         String host = hostPort[0];
